@@ -4,6 +4,7 @@ import GamesListPage from './pages/GamesListPage'
 import { Link, Route, Router, Routes } from 'react-router-dom'
 import TopPages from './pages/TopPages'
 import GameDetail from './pages/GameDetail'
+import AddComments from './pages/AddComments'
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
 
        <Route path ="/" element={ <TopPages/>} />
        <Route path ="/games/:gameid" element={ <GameDetail/>} />
+       
+       <Route path="/commentaries/:gameid" element={<AddComments/>} />
 
 
 

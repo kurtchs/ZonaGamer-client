@@ -23,28 +23,28 @@ function GamesListPage() {
 
   return (
 	<>
-	<Link to="/games/:gameid"> <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", 
-      alignItems: "center"  }}>
-	  {allGames.map((eachGame) => (
-		<div key={eachGame.id} style={{
-			display: "flex", 
-          flexDirection: "column", 
-          alignItems: "center", 
-          justifyContent: "center", 
-          border: "solid blue", 
-          margin: 20, 
-          width: 300, 
-          height: 450, 
-          borderRadius: "20px",
-          padding: "10px",
-
-		}}>
-		  <img src={eachGame.image} style={{width: 250}} alt="" />
-		  <h3>{eachGame.name}</h3>
-		  <p>{eachGame.plataform.join(", ")}</p>
-		</div>
-	  ))}
-	</div></Link>
+	  <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+		{allGames.map((eachGame) => (
+		  <Link to={`/games/${eachGame.id}`} key={eachGame.id} style={{ textDecoration: 'none' }}>
+			<div style={{
+			  display: "flex", 
+			  flexDirection: "column", 
+			  alignItems: "center", 
+			  justifyContent: "center", 
+			  border: "solid blue", 
+			  margin: 20, 
+			  width: 300, 
+			  height: 450, 
+			  borderRadius: "20px",
+			  padding: "10px",
+			}}>
+			  <img src={eachGame.image} style={{ width: 250 }} alt="" />
+			  <h3>{eachGame.name}</h3>
+			  <p>{eachGame.plataform.join(", ")}</p>
+			</div>
+		  </Link>
+		))}
+	  </div>
 	</>
   );
 }
