@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import axios from "axios";
 
 function SearchBar(){
-    const [allGames, setAllGames] = useState(null);
+    const [allGames, setAllGames] = useState([]);
   console.log(allGames);
   useEffect(() => {
     axios
@@ -15,7 +15,7 @@ function SearchBar(){
         console.log(error);
       });
   }, []);
-const [searchInputValue, setSearchInputValue] =useState()
+const [searchInputValue, setSearchInputValue] = useState("")
 
 const handleSearchChange =(event) => {
     setSearchInputValue(event.target.value)

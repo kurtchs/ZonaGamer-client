@@ -10,15 +10,17 @@ const [comment, setComment] = useState("")
 const [date, setDate] = useState("")
 
 const params = useParams()
+console.log(params)
 const navigate = useNavigate()
-
 useEffect(() => {
     axios.get(`${import.meta.env.VITE_SERVER_URL}/editcomment/${params.gameid}`)
     .then((response) => {
+        
+        console.log("recibiendo datos")
         console.log(response)
         setUserName(response.data.userName)
         setComment(response.data.comment)
-        setDate(response.data.date)
+        setDate(response.data.dayPublish)
 
     })
     .catch((error) => {
@@ -32,7 +34,7 @@ const handleFormSubmit = async (e) => {
 
 try{
 
-    await axios.put(`${import.meta.env.VITE_SERVER_URL}/editcomment/${params.gameid}`, {
+    await axios.put(`${import.meta.env.VITE_SERVER_URL}/editcomment/${params.commentid}`, {
         userName: userName,
         comment: comment,
         dayPublish: date
@@ -49,7 +51,7 @@ try{
 const handleDelete =(e) => {
     e.preventDefault()
     axios.delete(`${import.meta.env.VITE_SERVER_URL}/commentaries/${
-          params.gameid
+          params.commentid
         }`)
         .then(() =>  {
 console.log( "comment eliminado")

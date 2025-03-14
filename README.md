@@ -1,12 +1,50 @@
-# React + Vite
+# Project Name
+Zona Gamer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Description
 
-Currently, two official plugins are available:
+Una plataforma diseñada para ayudar a los jugadores a escoger sus futuras compras, viendo los detalles del juego en el que están interesados y los comentarios de otros usuarios.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Client repo
+https://github.com/kurtchs/ZonaGamer-client
 
-## Expanding the ESLint configuration
+# Server repo
+https://github.com/kurtchs/ZonaGamer-Server
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# User Stories
+- 404 - página que te aparece cuando estas en la ruta equivocada.
+
+- Homepage - página que te aparece al entrar a la app enseñandote el top de juegos.
+
+- GameList - lista con todos los juegos disponibles.
+
+-GameDetails - lista con detalles del juego que estas interesado.
+
+# Client Routes
+
+| Path                      | Page            | Components        | Behavior                                                      |
+| ------------------------- | ----------------| ----------------  |  ------------------------------------------------------------  |
+| `/`                       | Home            |                   | Home page                                                     |
+| `/games`                 | Lista de juegos          |                   | Lista con todos los juegos de la api |
+| `/games/:gameid`                  | lista y detalles        |                   | el juego con sus detalles y comentarios  |
+| `/commentaries/:gameid`                | commentarios        |      | añade comentarios del juego           |
+| `/editcomment/:gameid`             | GameList        | EditComment, DeleteComment | Edita y elemina los comentarios.                                    |
+                     |
+
+# Other Components
+- Navbar
+
+- Footer
+
+# Project
+client
+https://github.com/kurtchs/ZonaGamer-client
+
+server
+https://github.com/kurtchs/ZonaGamer-Server
+
+# Slides
+https://docs.google.com/presentation/d/1ujhDnYxjp9nY3pF2S8lEa5rhmTOmGrkdXGKBjoHKTEQ/edit#slide=id.g34090b8fe90_0_103
+
+
+

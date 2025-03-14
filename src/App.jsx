@@ -50,7 +50,7 @@ function App() {
             >
                 About
             </Link>
-        <p>© 2025 Kurt Chacon. Todos los derechos reservados.</p>
+        <p>© 2025 Kurt Chacón. Todos los derechos reservados.</p>
       </footer>
     </>
   )

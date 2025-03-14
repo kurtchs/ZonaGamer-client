@@ -44,6 +44,7 @@ function GameDetail() {
         <p>{gameAndComents.copiesSold}</p>
       </div>
       {gameAndComents.commentaries.map((eachComment) => {
+      console.log(params.gameid)
         return (
           
             <div key={eachComment.id} style={{border:"solid blue", borderRadius: 10, margin:10}}>
@@ -52,7 +53,8 @@ function GameDetail() {
               <p>{eachComment.comment}</p>
               <p>{eachComment.favs}</p>
 
-              <Link to={`/editcomment/${params.gameid}`}><button>Edit</button></Link>
+              <Link to={`/editcomment/${params.gameid}`}
+              ><button>Edit</button></Link>
             </div>
           
         );
