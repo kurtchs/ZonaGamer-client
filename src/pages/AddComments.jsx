@@ -11,7 +11,7 @@ function AddComment() {
     const [nameInputValue, setNameInputValue] = useState("");
     const [commentInputValue, setCommentInputValue] = useState("");
     const [dateInputValue, setDateInputValue] = useState("");
-  
+    const [gameIdInputValue, setGameIdInputValue] = useState("")
     
     const handleNameInputChange = (event) => {
       console.log(event.target.value);
@@ -27,6 +27,11 @@ function AddComment() {
       console.log(event.target.value);
       setDateInputValue(event.target.value);
     };
+
+    const handleGameIdInputChange = (event) => {
+        console.log(event.target.value);
+        setGameIdInputValue(event.target.value);
+      };
   
     const handleSubmit = (event) => {
       event.preventDefault();
@@ -37,22 +42,23 @@ function AddComment() {
         .post(
           `${import.meta.env.VITE_SERVER_URL}/commentaries`,
           {
-            name: nameInputValue,
+            userName: nameInputValue,
             comment: commentInputValue,
-            date: dateInputValue,
+            dayPublish: dateInputValue,
+            gameId : gameIdInputValue
           }
         )
         .then((response) => {
           console.log(response.data);
           setAllGames(response.data); 
           navigate(`/games/${params.gameid}`)
+          
         })
         .catch((error) => {
           console.log(error);
         });
     };
   
-    
   
     
     console.log(allGames); 
@@ -93,7 +99,18 @@ function AddComment() {
               required
             />
           </div>
-  
+        
+          <div>
+            <label htmlFor="gameid">Game Id: </label>
+            <input
+              onChange={handleGameIdInputChange}
+              value={gameIdInputValue}
+              type="text"
+              name="date"
+              required
+            />
+          </div>
+
           <button type="submit">Add Comment</button>
         </form>
       </div>

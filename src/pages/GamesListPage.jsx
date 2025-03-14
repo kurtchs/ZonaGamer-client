@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import SearchBar from '../components/SearchBar';
 function GamesListPage() {
+
   const [allGames, setAllGames] = useState(null);
   console.log(allGames);
   useEffect(() => {
@@ -23,6 +24,7 @@ function GamesListPage() {
 
   return (
 	<>
+	<SearchBar />
 	  <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
 		{allGames.map((eachGame) => (
 		  <Link to={`/games/${eachGame.id}`} key={eachGame.id} style={{ textDecoration: 'none' }}>

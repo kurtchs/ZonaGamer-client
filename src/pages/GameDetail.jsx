@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 function GameDetail() {
   const params = useParams();
   console.log(params);
-  const [allGamesAndComents, setAllGamesAndComents] = useState(null);
-  console.log(allGamesAndComents);
+  const [gameAndComents, setAllGamesAndComents] = useState(null);
+  console.log(gameAndComents);
   useEffect(() => {
     axios
       .get(
@@ -22,27 +22,28 @@ function GameDetail() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [params.gameid]);
 
-  if (allGamesAndComents === null) {
+  if (gameAndComents === null) {
     return <h3>buscando juegos</h3>;
   }
 
-  console.log(allGamesAndComents.commentaries);
+  console.log(gameAndComents.commentaries);
+  
 
   return (
     <>
-      <div key={allGamesAndComents.id}>
-        <img src={allGamesAndComents.image} alt="" style={{ width: 450 }} />
-        <h2>{allGamesAndComents.name}</h2>
-        <p>{allGamesAndComents.info}</p>
-        <p>{allGamesAndComents.genre.join(", ")}</p>
-        <p>{allGamesAndComents.plataform.join(", ")}</p>
-        <p>{allGamesAndComents.releaseData}</p>
-        <p>{allGamesAndComents.awards.join(", ")}</p>
-        <p>{allGamesAndComents.copiesSold}</p>
+      <div key={gameAndComents.id}>
+        <img src={gameAndComents.image} alt="" style={{ width: 450 }} />
+        <h2>{gameAndComents.name}</h2>
+        <p>{gameAndComents.info}</p>
+        <p>{gameAndComents.genre.join(", ")}</p>
+        <p>{gameAndComents.plataform.join(", ")}</p>
+        <p>{gameAndComents.releaseData}</p>
+        <p>{gameAndComents.awards.join(", ")}</p>
+        <p>{gameAndComents.copiesSold}</p>
       </div>
-      {allGamesAndComents.commentaries.map((eachComment) => {
+      {gameAndComents.commentaries.map((eachComment) => {
         return (
           
             <div key={eachComment.id} style={{border:"solid blue", borderRadius: 10, margin:10}}>
@@ -50,6 +51,8 @@ function GameDetail() {
               <p>{eachComment.dayPublish}</p>
               <p>{eachComment.comment}</p>
               <p>{eachComment.favs}</p>
+
+              <Link to={`/editcomment/${params.gameid}`}><button>Edit</button></Link>
             </div>
           
         );
