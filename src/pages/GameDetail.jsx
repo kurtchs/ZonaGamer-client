@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
 function GameDetail() {
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   const [gameAndComents, setAllGamesAndComents] = useState(null);
-  console.log(gameAndComents);
+  // console.log(gameAndComents);
   useEffect(() => {
     axios
       .get(
@@ -15,12 +15,12 @@ function GameDetail() {
         }?_embed=commentaries`
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
 
         setAllGamesAndComents(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }, [params.gameid]);
 
@@ -28,7 +28,7 @@ function GameDetail() {
     return <h3>buscando juegos</h3>;
   }
 
-  console.log(gameAndComents.commentaries);
+  // console.log(gameAndComents.commentaries);
   
 
   return (
@@ -44,7 +44,7 @@ function GameDetail() {
         <p>{gameAndComents.copiesSold}</p>
       </div>
       {gameAndComents.commentaries.map((eachComment) => {
-      console.log(params.gameid)
+      // console.log(params.gameid)
         return (
           
             <div key={eachComment.id} style={{border:"solid blue", borderRadius: 10, margin:10}}>
@@ -53,7 +53,7 @@ function GameDetail() {
               <p>{eachComment.comment}</p>
               <p>{eachComment.favs}</p>
 
-              <Link to={`/editcomment/${params.gameid}`}
+              <Link to={`/commentaries/editcomment/${eachComment.id}`}
               ><button>Edit</button></Link>
             </div>
           

@@ -8,19 +8,22 @@ function EditComment(){
 const [userName, setUserName] = useState("")
 const [comment, setComment] = useState("")
 const [date, setDate] = useState("")
+const [gameId, setGameId] = useState("")
 
 const params = useParams()
-console.log(params)
+console.log("commentId",params.commentId)
 const navigate = useNavigate()
 useEffect(() => {
-    axios.get(`${import.meta.env.VITE_SERVER_URL}/editcomment/${params.gameid}`)
+    axios.get(`${import.meta.env.VITE_SERVER_URL}/commentaries/${params.commentId}`)
     .then((response) => {
         
         console.log("recibiendo datos")
         console.log(response)
+        console.log(response.data.userName)
         setUserName(response.data.userName)
         setComment(response.data.comment)
         setDate(response.data.dayPublish)
+        setGameId(response.data.gameId)
 
     })
     .catch((error) => {
@@ -34,12 +37,13 @@ const handleFormSubmit = async (e) => {
 
 try{
 
-    await axios.put(`${import.meta.env.VITE_SERVER_URL}/editcomment/${params.commentid}`, {
-        userName: userName,
-        comment: comment,
-        dayPublish: date
+    await axios.put(`${import.meta.env.VITE_SERVER_URL}/commentaries/${params.commentId}`, {
+      userName: userName,
+      comment: comment,
+      dayPublish: date,
+      gameId : gameId
     })
-    navigate(`/games/${params.gameid}`)
+    navigate("/games")
 
     
 
@@ -50,14 +54,12 @@ try{
 }
 const handleDelete =(e) => {
     e.preventDefault()
-    axios.delete(`${import.meta.env.VITE_SERVER_URL}/commentaries/${
-          params.commentid
-        }`)
+    axios.delete(`${import.meta.env.VITE_SERVER_URL}/commentaries/${params.commentId}`)
         .then(() =>  {
 console.log( "comment eliminado")
 
 
-navigate(`/games/${params.gameid}`)
+navigate(`/games`)
         })
         .catch((error) => {
             console.log(error)
@@ -96,6 +98,18 @@ navigate(`/games/${params.gameid}`)
               type="text"
               name="date"
               onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="gameid">Game Id: </label>
+            <input
+              onChange={(e) => setGameId(e.target.value)}
+              value={gameId}
+              type="text"
+              name="date"
+              required
+              
             />
           </div>
 

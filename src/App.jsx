@@ -22,15 +22,12 @@ function App() {
     
       <Routes>
       <Route path="*" element={<NotFoundPage />} />
-       <Route path="/games" element={<GamesListPage />} />
-
-       <Route path ="/" element={ <TopPages/>} />
-       <Route path ="/games/:gameid" element={ <GameDetail/>} />
-       
-       <Route path="/commentaries/:gameid" element={<AddComments/>} />
-
-       <Route path="/editcomment/:gameid" element={<EditComment />} />
-       <Route path ="/about" element={ <AboutPage/>} />
+      <Route path="/games" element={<GamesListPage />} />
+      <Route path="/" element={<TopPages />} />
+      <Route path="/games/:gameid" element={<GameDetail />} />
+      <Route path="/commentaries/:gameid" element={<AddComments />} />
+      <Route path="/commentaries/editcomment/:commentId" element={<EditComment />} />
+      <Route path="/about" element={<AboutPage />} />
       
 
 

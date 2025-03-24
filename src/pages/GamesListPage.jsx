@@ -5,12 +5,15 @@ import SearchBar from '../components/SearchBar';
 function GamesListPage() {
 
   const [allGames, setAllGames] = useState(null);
-  console.log(allGames);
+//   console.log(allGames);
+
+const [ searchInputValue, setSearchInputValue ] = useState("")
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_SERVER_URL}/games`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setAllGames(response.data);
       })
       .catch((error) => {
@@ -22,11 +25,17 @@ function GamesListPage() {
     return <h3>buscando juegos</h3>;
   }
 
+  const filteredGames = allGames.filter(function (game) {
+	return game.name.toLowerCase().includes(searchInputValue.toLowerCase());
+  })
+  
+
   return (
 	<>
-	<SearchBar />
+	<SearchBar searchInputValue={searchInputValue} setSearchInputValue={setSearchInputValue}/>
+
 	  <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
-		{allGames.map((eachGame) => (
+		{filteredGames.map((eachGame) => (
 		  <Link to={`/games/${eachGame.id}`} key={eachGame.id} style={{ textDecoration: 'none' }}>
 			<div style={{
 			  display: "flex", 
